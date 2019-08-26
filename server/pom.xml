@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.example</groupId>
+    <artifactId>ft-rest-client</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>server</artifactId>
+  <packaging>war</packaging>
+
+  <build>
+    <finalName>server</finalName>
+    <plugins>
+      <plugin>
+        <groupId>fish.payara.maven.plugins</groupId>
+        <artifactId>payara-micro-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>start</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <skip>false</skip>
+          <daemon>true</daemon>
+          <deployWar>true</deployWar>
+          <contextRoot>server</contextRoot>
+          <commandLineOptions>
+            <option>
+              <key>--logtofile</key>
+              <value>${project.build.directory}/server.log</value>
+            </option>
+            <option>
+              <key>--port</key>
+              <value>${server.port}</value>
+            </option>
+          </commandLineOptions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
