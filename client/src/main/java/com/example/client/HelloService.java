@@ -6,6 +6,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 /** @author Ondrej Mihalyi */
@@ -18,5 +19,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 public interface HelloService {
   @Path("{name}")
   @GET
+  @Retry // this does not work but should according to the 1.2 spec
+  // https://github.com/eclipse/microprofile-rest-client/blob/1.2.0/spec/src/main/asciidoc/integration.asciidoc
   String hello(@PathParam("name") String name);
 }
